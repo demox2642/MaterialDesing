@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ferstFragment">
+
+    <fragment
+        android:id="@+id/ferstFragment"
+        android:name="com.skilbox.materialdesing.FerstFragment"
+        android:label="fragment_ferst"
+        tools:layout="@layout/fragment_ferst" />
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.skilbox.materialdesing.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" />
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.skilbox.materialdesing.ThirdFragment"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_third" />
+    <fragment
+        android:id="@+id/fourthFragment"
+        android:name="com.skilbox.materialdesing.FourthFragment"
+        android:label="fragment_fourth"
+        tools:layout="@layout/fragment_fourth" />
+</navigation>
