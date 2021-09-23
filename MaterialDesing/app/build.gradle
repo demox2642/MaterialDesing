@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'org.jmailen.kotlinter'
     id  'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -50,14 +51,49 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+
+    //ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation "androidx.fragment:fragment-ktx:1.3.6"
+    //LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 
-    //LINTER
+    //Networking
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:27.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation ("com.github.bumptech.glide:glide:4.12.0") {
+        exclude group: "com.android.support"
+    }
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    // Skip this if you don't want to use integration libraries or configure Glide.
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     androidExtensions{
         experimental = true
     }
+
+    //Okhttp
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+    //Okhttp interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.0'
+
+
+    implementation "com.squareup.moshi:moshi:1.12.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
+
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.0-alpha03'
 }

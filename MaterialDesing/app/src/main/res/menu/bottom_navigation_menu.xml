@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/ferstFragment"
         android:enabled="true"
         android:icon="@drawable/favorite_24"
         android:title="@string/text_label_1"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/secondFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_music_note_24"
         android:title="@string/text_label_2"/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/thirdFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_place_24"
         android:title="@string/text_label_3"/>
     <item
-        android:id="@+id/page_4"
+        android:id="@+id/fourthFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_web_24"
         android:title="@string/text_label_4"/>
