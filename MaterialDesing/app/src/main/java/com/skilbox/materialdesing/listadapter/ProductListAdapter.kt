@@ -23,7 +23,7 @@ class ProductListAdapter :
         viewType: Int
     ): ProductViewHolder {
         val inflater =
-            LayoutInflater.from(parent.context).inflate(R.layout.product_vie_for_list, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.product_view_for_list, parent, false)
 
         return ProductViewHolder(inflater)
     }
