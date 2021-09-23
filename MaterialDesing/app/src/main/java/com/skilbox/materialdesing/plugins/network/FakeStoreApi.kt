@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface FakeStoreApi {
     @GET("/products")
-    suspend fun getAllProducts(): Product
+    suspend fun getAllProducts(): List<Product>
 
     @GET("/products/{product_id}")
     suspend fun getAllProducts(
