@@ -1,5 +1,15 @@
 package com.skilbox.materialdesing.plugins.network
 
-interface FakeStoreApi {
+import com.skilbox.materialdesing.fakestoreapi.data.Product
+import retrofit2.http.GET
+import retrofit2.http.Path
 
+interface FakeStoreApi {
+    @GET("/products")
+    suspend fun getAllProducts(): Product
+
+    @GET("/products/{product_id}")
+    suspend fun getAllProducts(
+        @Path("product_id") product_id: Int
+    ): Product
 }
