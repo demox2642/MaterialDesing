@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.skilbox.materialdesing.R
 import com.skilbox.materialdesing.fakestoreapi.data.Product
+import kotlinx.android.synthetic.main.product_view_for_list.view.*
 
 class ProductListAdapter :
     PagingDataAdapter<Product, ProductListAdapter.ProductViewHolder>(DiffUtilCallBack()) {
@@ -34,11 +36,11 @@ class ProductListAdapter :
 //            itemView.movie_title.text = data.display_title
 //            itemView.movie_summary_short.text = data.summary_short
 //
-//            Glide.with(itemView.movie_image)
-//                .load(data.multimedia.src)
-//                .placeholder(R.drawable.nytimes_logo)
-//                .into(itemView.movie_image)
-//                .view
+            Glide.with(itemView.image_product)
+                .load(data.image)
+               // .placeholder(R.drawable.nytimes_logo)
+                .into(itemView.image_product)
+                .view
         }
     }
 
