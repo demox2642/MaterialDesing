@@ -1,5 +1,6 @@
 package com.skilbox.materialdesing.listadapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,13 +33,13 @@ class ProductListAdapter :
 
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(data: Product) {
-//            itemView.movie_title.text = data.display_title
-//            itemView.movie_summary_short.text = data.summary_short
-//
+            itemView.product_name.text = data.title
+            itemView.price.text = "${data.price}$"
+            itemView.rating.text = "rating:${data.rating.rate} of votes:${data.rating.count} "
             Glide.with(itemView.image_product)
                 .load(data.image)
-               // .placeholder(R.drawable.nytimes_logo)
                 .into(itemView.image_product)
                 .view
         }
