@@ -13,4 +13,5 @@
     <color name="iconTint">#689f38</color>
     <color name="item_color_inactive">#8bc34a</color>
     <color name="item_color_active">#fff176</color>
+    <color name="background">#FFD8D8D6</color>
 </resources>
