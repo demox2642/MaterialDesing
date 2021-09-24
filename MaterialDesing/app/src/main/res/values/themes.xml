@@ -14,10 +14,14 @@
         <!-- Customize your theme here. -->
         <item name="bottomNavigationStyle">@style/BottomNavigationViewStyle</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
-
+        <item name="snackbarStyle">@style/Widget.App.Snackbar</item>
 
     </style>
-
+    <style name="Widget.App.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="animationMode">slide</item>
+        <item name="android:layout_margin">200dp</item>
+    </style>
+<!-- Card-->
     <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.Card</item>
         <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
