@@ -24,12 +24,12 @@ class FerstFragment : ViewBindingFragment<FragmentFerstBinding>(FragmentFerstBin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
-        initViewModel()
 
         Handler().postDelayed(
             {
                 Snackbar.make(view, "Соединение с сервером отсутствует, показаны сохранённые объекты", Snackbar.LENGTH_INDEFINITE)
                     .setAction("Повторить") {
+                        initViewModel()
                         Snackbar.make(view, "Список обновлён", Snackbar.LENGTH_LONG)
                             .show()
                     }
