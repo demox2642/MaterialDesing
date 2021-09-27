@@ -1,5 +1,6 @@
 package com.skilbox.materialdesing
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -20,6 +21,15 @@ import kotlinx.coroutines.flow.collectLatest
 class FerstFragment : ViewBindingFragment<FragmentFerstBinding>(FragmentFerstBinding::inflate) {
 
     private var productAdapter: ProductListAdapter ? = null
+    private var spanCount = 3
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK === Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            spanCount = 2
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,11 +51,10 @@ class FerstFragment : ViewBindingFragment<FragmentFerstBinding>(FragmentFerstBin
 
     private fun initList() {
         productAdapter = ProductListAdapter()
-
         with(binding.productRecycler) {
             adapter = productAdapter
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = GridLayoutManager(context, spanCount)
             setHasFixedSize(true)
         }
     }

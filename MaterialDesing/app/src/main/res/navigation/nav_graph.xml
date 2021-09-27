@@ -9,7 +9,11 @@
         android:id="@+id/ferstFragment"
         android:name="com.skilbox.materialdesing.FerstFragment"
         android:label="fragment_ferst"
-        tools:layout="@layout/fragment_ferst" />
+        tools:layout="@layout/fragment_ferst" >
+        <action
+            android:id="@+id/action_ferstFragment_to_detailInfoFragment"
+            app:destination="@id/detailInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.skilbox.materialdesing.SecondFragment"
@@ -25,4 +29,9 @@
         android:name="com.skilbox.materialdesing.FourthFragment"
         android:label="fragment_fourth"
         tools:layout="@layout/fragment_fourth" />
+    <fragment
+        android:id="@+id/detailInfoFragment"
+        android:name="com.skilbox.materialdesing.DetailInfoFragment"
+        android:label="fragment_detail_info"
+        tools:layout="@layout/fragment_detail_info" />
 </navigation>

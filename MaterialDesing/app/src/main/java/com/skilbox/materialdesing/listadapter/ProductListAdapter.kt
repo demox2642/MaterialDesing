@@ -1,6 +1,9 @@
 package com.skilbox.materialdesing.listadapter
 
+import android.animation.AnimatorSet
 import android.annotation.SuppressLint
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +36,7 @@ class ProductListAdapter :
 
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        private var mAnimIncrease: AnimatorSet? = null
         @SuppressLint("SetTextI18n")
         fun bind(data: Product) {
             itemView.product_name.text = data.title
@@ -42,6 +46,16 @@ class ProductListAdapter :
                 .load(data.image)
                 .into(itemView.image_product)
                 .view
+
+            itemView.setOnClickListener {
+                if (itemView.expandableView.visibility == View.GONE) {
+                    TransitionManager.beginDelayedTransition(itemView.product_card, AutoTransition())
+                    itemView.expandableView.visibility = View.VISIBLE
+                } else {
+                    TransitionManager.beginDelayedTransition(itemView.product_card, AutoTransition())
+                    itemView.expandableView.visibility = View.GONE
+                }
+            }
         }
     }
 
