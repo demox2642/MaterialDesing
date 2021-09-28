@@ -1,6 +1,8 @@
 package com.skilbox.materialdesing.listadapter
 
-import android.animation.AnimatorSet
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -36,7 +38,6 @@ class ProductListAdapter :
 
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private var mAnimIncrease: AnimatorSet? = null
         @SuppressLint("SetTextI18n")
         fun bind(data: Product) {
             itemView.product_name.text = data.title
@@ -51,9 +52,33 @@ class ProductListAdapter :
                 if (itemView.expandableView.visibility == View.GONE) {
                     TransitionManager.beginDelayedTransition(itemView.product_card, AutoTransition())
                     itemView.expandableView.visibility = View.VISIBLE
+
+                    val animator = ObjectAnimator.ofFloat(itemView.shopping_cart, "alpha", 0f, 1f)
+                    animator.duration = 1000
+                    animator.addListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationStart(animation: Animator?) {
+                            itemView.shopping_cart.isEnabled = false
+                        }
+                        override fun onAnimationEnd(animation: Animator?) {
+                            itemView.shopping_cart.isEnabled = true
+                        }
+                    })
+                    animator.start()
                 } else {
                     TransitionManager.beginDelayedTransition(itemView.product_card, AutoTransition())
                     itemView.expandableView.visibility = View.GONE
+
+                    val animator = ObjectAnimator.ofFloat(itemView.baseline_info, "alpha", 1f, 0f)
+                    animator.duration = 1000
+                    animator.addListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationStart(animation: Animator?) {
+                            itemView.shopping_cart.isEnabled = false
+                        }
+                        override fun onAnimationEnd(animation: Animator?) {
+                            itemView.shopping_cart.isEnabled = true
+                        }
+                    })
+                    animator.start()
                 }
             }
         }
