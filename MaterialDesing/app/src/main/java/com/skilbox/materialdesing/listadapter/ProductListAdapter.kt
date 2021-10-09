@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.transition.AutoTransition
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,13 +31,19 @@ class ProductListAdapter :
         parent: ViewGroup,
         viewType: Int
     ): ProductViewHolder {
+
         val inflater =
             LayoutInflater.from(parent.context).inflate(R.layout.product_view_for_list, parent, false)
 
         return ProductViewHolder(inflater)
     }
 
+
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+       var parent = itemView.height
+
+
 
         @SuppressLint("SetTextI18n")
         fun bind(data: Product) {
@@ -49,38 +56,51 @@ class ProductListAdapter :
                 .view
 
             itemView.setOnClickListener {
+                Log.e("ProductViewHolder","setOnClickListener before if height=${itemView.height} width=${parent}")
+                parent=itemView.height
                 if (itemView.expandableView.visibility == View.GONE) {
-                    TransitionManager.beginDelayedTransition(itemView.product_card, AutoTransition())
-                    itemView.expandableView.visibility = View.VISIBLE
+                    Log.e("ProductViewHolder","setOnClickListener if true height=${itemView.height} width=${parent}")
+                    itemAnimation(true)
+                    itemView.parent.showContextMenuForChild(itemView,0f,1f)
 
-                    val animator = ObjectAnimator.ofFloat(itemView.shopping_cart, "alpha", 0f, 1f)
-                    animator.duration = 1000
-                    animator.addListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationStart(animation: Animator?) {
-                            itemView.shopping_cart.isEnabled = false
-                        }
-                        override fun onAnimationEnd(animation: Animator?) {
-                            itemView.shopping_cart.isEnabled = true
-                        }
-                    })
-                    animator.start()
                 } else {
-                    TransitionManager.beginDelayedTransition(itemView.product_card, AutoTransition())
-                    itemView.expandableView.visibility = View.GONE
 
-                    val animator = ObjectAnimator.ofFloat(itemView.baseline_info, "alpha", 1f, 0f)
-                    animator.duration = 1000
-                    animator.addListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationStart(animation: Animator?) {
-                            itemView.shopping_cart.isEnabled = false
-                        }
-                        override fun onAnimationEnd(animation: Animator?) {
-                            itemView.shopping_cart.isEnabled = true
-                        }
-                    })
-                    animator.start()
+
+                    itemAnimation(false)
+                    Log.e("ProductViewHolder","setOnClickListener if false height=${itemView.height} width=${parent}")
+                  itemView.layoutParams.height=419
                 }
             }
+        }
+
+
+
+        private fun itemAnimation(itemStatus:Boolean){
+            TransitionManager.beginDelayedTransition(itemView.product_card, AutoTransition())
+            val animator:ObjectAnimator
+            when(itemStatus){
+                    true-> {
+                        animator = ObjectAnimator.ofFloat(itemView.shopping_cart, "alpha", 0f, 1f)
+                        itemView.expandableView.visibility = View.VISIBLE
+                    }
+                    false->{
+                        animator = ObjectAnimator.ofFloat(itemView.shopping_cart, "alpha", 1f, 0f)
+                        itemView.expandableView.visibility = View.GONE
+
+                    }
+
+            }
+            animator.duration = 1000
+            animator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    itemView.shopping_cart.isEnabled = false
+                }
+                override fun onAnimationEnd(animation: Animator?) {
+                    itemView.shopping_cart.isEnabled = true
+                }
+            })
+            animator.start()
+
         }
     }
 
@@ -93,4 +113,6 @@ class ProductListAdapter :
             return oldItem == newItem
         }
     }
+
+
 }

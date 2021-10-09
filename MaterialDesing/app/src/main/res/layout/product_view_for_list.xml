@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Theme.MaterialDesing"
+    android:id="@+id/item_layout"
     android:layout_width="160dp"
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/product_card"
-        style="@style/Widget.App.CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
@@ -18,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <ImageView
+            <ImageView
                 android:id="@+id/image_product"
 
                 android:layout_width="match_parent"
@@ -47,15 +46,15 @@
                     style="@style/Subtitle2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp" />
 
                 <TextView
-                    style="@style/Body2"
                     android:id="@+id/rating"
+                    style="@style/Body2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/expandableView"
@@ -104,4 +103,4 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>
