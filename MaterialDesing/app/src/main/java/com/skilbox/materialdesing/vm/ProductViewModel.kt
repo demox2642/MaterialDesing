@@ -15,10 +15,9 @@ import kotlinx.coroutines.launch
 
 class ProductViewModel : ViewModel() {
 
-    private val productLiveData= MutableLiveData<Product>()
-    val productInfo:LiveData<Product>
-    get() = productLiveData
-
+    private val productLiveData = MutableLiveData<Product>()
+    val productInfo: LiveData<Product>
+        get() = productLiveData
 
     fun getAllProducts(): Flow<PagingData<Product>> {
         return Pager(
@@ -28,14 +27,13 @@ class ProductViewModel : ViewModel() {
         ).flow.cachedIn(viewModelScope)
     }
 
-    fun getProduct(id_product:Int){
+    fun getProduct(id_product: Int) {
         viewModelScope.launch {
             try {
-                productLiveData.postValue( ProductsRepository().getProduct(id_product))
-            }catch (e:Exception){
-                Log.e("VM","$e")
+                productLiveData.postValue(ProductsRepository().getProduct(id_product))
+            } catch (e: Exception) {
+                Log.e("VM", "$e")
             }
         }
-
     }
 }

@@ -11,10 +11,10 @@ import com.skilbox.materialdesing.databinding.FragmentDetailInfoBinding
 import com.skilbox.materialdesing.fakestoreapi.data.Product
 import com.skilbox.materialdesing.vm.ProductViewModel
 
-class DetailInfoFragment : ViewBindingFragment<FragmentDetailInfoBinding>(FragmentDetailInfoBinding::inflate){
+class DetailInfoFragment : ViewBindingFragment<FragmentDetailInfoBinding>(FragmentDetailInfoBinding::inflate) {
 
-    private val args : DetailInfoFragmentArgs by navArgs()
-    private val viewModel:ProductViewModel by viewModels()
+    private val args: DetailInfoFragmentArgs by navArgs()
+    private val viewModel: ProductViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,6 @@ class DetailInfoFragment : ViewBindingFragment<FragmentDetailInfoBinding>(Fragme
             drawingViewId = R.id.nav_fragment
             duration = 400.toLong()
             scrimColor = Color.TRANSPARENT
-
         }
     }
 
@@ -32,16 +31,15 @@ class DetailInfoFragment : ViewBindingFragment<FragmentDetailInfoBinding>(Fragme
         bindViewModel()
     }
 
-
     private fun bindViewModel() {
-        viewModel.productInfo.observe(viewLifecycleOwner){updateView(it)}
+        viewModel.productInfo.observe(viewLifecycleOwner) { updateView(it) }
     }
 
-    private fun updateView(product: Product){
+    private fun updateView(product: Product) {
         binding.producktName.text = product.title
-        binding.category.text=product.category
-        binding.description.text=product.description
-        binding.productPrice.text = product.price+"$"
+        binding.category.text = product.category
+        binding.description.text = product.description
+        binding.productPrice.text = product.price + "$"
 
         Glide.with(binding.producktImage)
             .load(product.image)
