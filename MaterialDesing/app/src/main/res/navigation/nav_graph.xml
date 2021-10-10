@@ -33,5 +33,9 @@
         android:id="@+id/detailInfoFragment"
         android:name="com.skilbox.materialdesing.DetailInfoFragment"
         android:label="fragment_detail_info"
-        tools:layout="@layout/fragment_detail_info" />
+        tools:layout="@layout/fragment_detail_info" >
+        <argument
+            android:name="product_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

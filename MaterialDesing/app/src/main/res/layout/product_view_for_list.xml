@@ -6,6 +6,8 @@
     android:layout_width="160dp"
     android:layout_height="wrap_content">
 
+
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/product_card"
         android:layout_width="match_parent"
@@ -74,14 +76,14 @@
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
                         android:clickable="true"
-                        app:layout_constraintEnd_toStartOf="@+id/baseline_info"
+                        app:layout_constraintEnd_toStartOf="@+id/product_info"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/shopping_cart_24" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/baseline_info"
+                        android:id="@+id/product_info"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"

@@ -28,8 +28,8 @@ class ProductsRepository : PagingSource<Int, Product>() {
         }
     }
 
-    suspend fun getProduct(){
-        val product = NetworkRetrofit.fakeStoreApi.getAllProducts(1)
+    suspend fun getProduct(id_product:Int): Product {
+        return NetworkRetrofit.fakeStoreApi.getAllProducts(id_product)
     }
 
     companion object {

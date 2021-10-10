@@ -1,6 +1,8 @@
 package com.skilbox.materialdesing.vm
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -13,6 +15,11 @@ import kotlinx.coroutines.launch
 
 class ProductViewModel : ViewModel() {
 
+    private val productLiveData= MutableLiveData<Product>()
+    val productInfo:LiveData<Product>
+    get() = productLiveData
+
+
     fun getAllProducts(): Flow<PagingData<Product>> {
         return Pager(
             config = PagingConfig(pageSize = 10),
@@ -21,10 +28,10 @@ class ProductViewModel : ViewModel() {
         ).flow.cachedIn(viewModelScope)
     }
 
-    fun getProduct(){
+    fun getProduct(id_product:Int){
         viewModelScope.launch {
             try {
-                ProductsRepository().getProduct()
+                productLiveData.postValue( ProductsRepository().getProduct(id_product))
             }catch (e:Exception){
                 Log.e("VM","$e")
             }

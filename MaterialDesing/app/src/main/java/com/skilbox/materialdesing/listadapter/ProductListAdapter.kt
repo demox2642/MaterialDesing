@@ -18,19 +18,19 @@ import com.skilbox.materialdesing.R
 import com.skilbox.materialdesing.fakestoreapi.data.Product
 import kotlinx.android.synthetic.main.product_view_for_list.view.*
 
-class ProductListAdapter :
+class ProductListAdapter(
+    private val  onItemClick: (product_id: Int) -> Unit
+) :
     PagingDataAdapter<Product, ProductListAdapter.ProductViewHolder>(DiffUtilCallBack()) {
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(it)
+            holder.bind(it,onItemClick = onItemClick)
         }
+
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ProductViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
 
         val inflater =
             LayoutInflater.from(parent.context).inflate(R.layout.product_view_for_list, parent, false)
@@ -46,7 +46,7 @@ class ProductListAdapter :
 
 
         @SuppressLint("SetTextI18n")
-        fun bind(data: Product) {
+        fun bind(data: Product, onItemClick: (product_id: Int) -> Unit) {
             itemView.product_name.text = data.title
             itemView.price.text = "${data.price}$"
             itemView.rating.text = "rating:${data.rating.rate} of votes:${data.rating.count} "
@@ -54,6 +54,11 @@ class ProductListAdapter :
                 .load(data.image)
                 .into(itemView.image_product)
                 .view
+
+            itemView.product_info.setOnClickListener{
+                onItemClick(data.id)
+            }
+
 
             itemView.setOnClickListener {
                 Log.e("ProductViewHolder","setOnClickListener before if height=${itemView.height} width=${parent}")
