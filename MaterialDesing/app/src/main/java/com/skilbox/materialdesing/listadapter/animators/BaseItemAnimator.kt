@@ -1,7 +1,6 @@
 package com.skilbox.materialdesing.listadapter.animators
 
 import android.animation.Animator
-import android.util.Log
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.recyclerview.widget.RecyclerView
@@ -67,8 +66,10 @@ abstract class BaseItemAnimator : SimpleItemAnimator() {
         }
 
         override fun toString(): String {
-            return ("ChangeInfo{" + "oldHolder=" + oldHolder + ", newHolder=" + newHolder + ", fromX="
-                    + fromX + ", fromY=" + fromY + ", toX=" + toX + ", toY=" + toY + '}')
+            return (
+                "ChangeInfo{" + "oldHolder=" + oldHolder + ", newHolder=" + newHolder + ", fromX=" +
+                    fromX + ", fromY=" + fromY + ", toX=" + toX + ", toY=" + toY + '}'
+                )
         }
     }
 
@@ -304,8 +305,12 @@ abstract class BaseItemAnimator : SimpleItemAnimator() {
     }
 
     override fun animateChange(
-        oldHolder: RecyclerView.ViewHolder, newHolder: RecyclerView.ViewHolder, fromX: Int, fromY: Int,
-        toX: Int, toY: Int
+        oldHolder: RecyclerView.ViewHolder,
+        newHolder: RecyclerView.ViewHolder,
+        fromX: Int,
+        fromY: Int,
+        toX: Int,
+        toY: Int
     ): Boolean {
         if (oldHolder === newHolder) {
             // Don't know how to run change animations when the same view holder is re-used.
@@ -491,10 +496,12 @@ abstract class BaseItemAnimator : SimpleItemAnimator() {
     }
 
     override fun isRunning(): Boolean {
-        return (pendingAdditions.isNotEmpty() || pendingChanges.isNotEmpty() || pendingMoves.isNotEmpty()
-                || pendingRemovals.isNotEmpty() || moveAnimations.isNotEmpty() || removeAnimations.isNotEmpty()
-                || addAnimations.isNotEmpty() || changeAnimations.isNotEmpty() || movesList.isNotEmpty()
-                || additionsList.isNotEmpty() || changesList.isNotEmpty())
+        return (
+            pendingAdditions.isNotEmpty() || pendingChanges.isNotEmpty() || pendingMoves.isNotEmpty() ||
+                pendingRemovals.isNotEmpty() || moveAnimations.isNotEmpty() || removeAnimations.isNotEmpty() ||
+                addAnimations.isNotEmpty() || changeAnimations.isNotEmpty() || movesList.isNotEmpty() ||
+                additionsList.isNotEmpty() || changesList.isNotEmpty()
+            )
     }
 
     /**
@@ -565,7 +572,7 @@ abstract class BaseItemAnimator : SimpleItemAnimator() {
                 val view = item.itemView
                 view.alpha = 1f
                 dispatchAddFinished(item)
-                //this check prevent exception when removal already happened during finishing animation
+                // this check prevent exception when removal already happened during finishing animation
                 if (j < additions.size) {
                     additions.removeAt(j)
                 }

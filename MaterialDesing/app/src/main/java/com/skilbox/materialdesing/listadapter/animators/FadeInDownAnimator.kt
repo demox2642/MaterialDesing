@@ -11,7 +11,7 @@ open class FadeInDownAnimator : BaseItemAnimator {
     }
 
     override fun animateRemoveImpl(holder: RecyclerView.ViewHolder) {
-        Log.e("BaseItemAnimator","animateRemoveImpl")
+        Log.e("BaseItemAnimator", "animateRemoveImpl")
         holder.itemView.animate().apply {
             translationY(-holder.itemView.height * .25f)
             alpha(0f)
@@ -22,8 +22,8 @@ open class FadeInDownAnimator : BaseItemAnimator {
         }.start()
     }
 
-   override fun hideBottomItemMenu(holder: RecyclerView.ViewHolder){
-       Log.e("BaseItemAnimator","hideBottomItemMenu")
+    override fun hideBottomItemMenu(holder: RecyclerView.ViewHolder) {
+        Log.e("BaseItemAnimator", "hideBottomItemMenu")
         holder.itemView.animate().apply {
             translationY(-holder.itemView.height * .25f)
             alpha(0f)
@@ -35,13 +35,13 @@ open class FadeInDownAnimator : BaseItemAnimator {
     }
 
     override fun preAnimateAddImpl(holder: RecyclerView.ViewHolder) {
-        Log.e("BaseItemAnimator","preAnimateAddImpl")
+        Log.e("BaseItemAnimator", "preAnimateAddImpl")
         holder.itemView.translationY = -holder.itemView.height * .25f
         holder.itemView.alpha = 0f
     }
 
     override fun animateAddImpl(holder: RecyclerView.ViewHolder) {
-        Log.e("BaseItemAnimator","animateAddImpl")
+        Log.e("BaseItemAnimator", "animateAddImpl")
         holder.itemView.animate().apply {
             translationY(0f)
             alpha(1f)
